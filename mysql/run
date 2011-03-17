@@ -1,0 +1,13 @@
+#!/bin/bash
+
+exec 2>&1
+
+mkdir -p $HOME/.services/var/run/mysqld $HOME/.services/var/lib/mysql
+
+exec mysqld \
+       --basedir=/usr/local \
+       # --datadir=$HOME/.services/var/lib/mysql \
+       --pid-file=$HOME/.services/var/run/mysqld/mysqld.pid \
+       --skip-external-locking \
+       --port=3306 \
+       --socket=$HOME/.services/var/run/mysqld/mysqld.sock
